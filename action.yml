@@ -35,5 +35,5 @@ runs:
   image: "Dockerfile"
 
 branding:
-  color: "teal"
+  color: "blue"
   icon: "upload"
