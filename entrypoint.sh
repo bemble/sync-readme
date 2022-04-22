@@ -9,7 +9,7 @@ if [ -z "${INPUT_PASS}" ]; then
   >&2 printf "\nERR: Invalid input: 'pass' is required, and must be specified.\n\n"
   >&2 printf "\tNote: It's the password used to login to Docker Hub.\n"
   >&2 printf "Try:\n"
-  >&2 printf "\tuses: meeDamian/sync-readme@TAG\n"
+  >&2 printf "\tuses: bemble/sync-readme@TAG\n"
   >&2 printf "\twith:\n"
   >&2 printf "\t  ...\n"
   >&2 printf "\t  pass: \${{ secrets.DOCKER_PASS }}\n"
@@ -22,7 +22,7 @@ README=${INPUT_README:-./README.md}
 if [ ! -f "${README}" ]; then
   >&2 printf "\nERR: '%s' file doesn't exit\n\n" "${README}"
   >&2 printf "Either create it, or point to the file you want to be used with:\n"
-  >&2 printf "\tuses: meeDamian/sync-readme@TAG\n"
+  >&2 printf "\tuses: bemble/sync-readme@TAG\n"
   >&2 printf "\twith:\n"
   >&2 printf "\t  ...\n"
   >&2 printf "\t  readme: PATH_TO_FILE\n\n"
