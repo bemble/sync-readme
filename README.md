@@ -16,18 +16,6 @@ Github Action to sync `README.md` from Github to Docker Hub
 See [action.yml](action.yml)
 
 
-## Warning
-
-As of right now, this action **will not work** if you have 2FA on Docker Hub enabled!
-
-It's impossible to login automatically when 2FA is used, and using Docker API Token results with:
-
-```json
-{"detail": "access to the resource is forbidden with personal access token"}
-```
-
-I'll try to update it as soon as the solution is found, and any suggestions welcome.
-
 #### Minimal
 
 If your `user`-name, and the repo path (`slug`) are both the same on Github and Docker Hub, and `README.md` is located at repo's root, it's enough to:
@@ -58,6 +46,24 @@ steps:
     readme: ./docker/description.md
     description: A must-have container, that you can't live without.
 ```
+
+#### Docker Hub 2FA
+
+If your Docker Hub account uses software 2FA, you need to pass the TOTP secret:
+
+```yaml
+steps:
+- uses: actions/checkout@master
+
+- uses: meeDamian/sync-readme@v1.0.7
+  with:
+    pass: ${{ secrets.DOCKER_PASS }}
+    totp_secret: ${{ secrets.DOCKER_TOTP_SECRET }}
+    description: true
+```
+
+The best way to get your TOTP secret is to disable 2FA and then enable 2FA. The secret is text given in step 2, "Text Code".
+Alternatively, your software may display it (for example, with Bitwarden, edit your entry, the secret is at the end of authentication key).
 
 > **NOTE:** Add Docker Hub password to "Secrets" section in your repo's settings.
  

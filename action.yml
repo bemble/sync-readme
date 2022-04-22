@@ -1,6 +1,6 @@
 name: Docker Hub README & description sync
 description: Sync README.md and description from Github to Docker Hub
-author: 'Damian Mee <spam@meedamian.com>'
+author: "Damian Mee <spam@meedamian.com>"
 inputs:
   user:
     description: Docker Hub username.  Set only if different than on Github.
@@ -9,6 +9,10 @@ inputs:
   pass:
     description: Docker Hub password
     required: true
+
+  totp_secret:
+    description: Docker Hub 2FA totp secret
+    required: false
 
   slug:
     description: |
@@ -27,9 +31,9 @@ inputs:
     required: false
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
 
 branding:
-  color: 'green'
-  icon: 'target'
+  color: "green"
+  icon: "target"

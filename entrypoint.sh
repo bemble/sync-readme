@@ -46,6 +46,17 @@ TOKEN=$(jq -nc \
   | curl -sH "Content-Type: application/json"  -d @-  "${DOCKERHUB_API}/users/login" \
   | jq -r 'select(.token != null) | .token')
 
+# Handle 2FA
+if [ ! -z "${INPUT_TOTP_SECRET}" ]; then
+  totpCode=$(oathtool --base32 --totp ${INPUT_TOTP_SECRET})
+  TOKEN=$(jq -nc \
+    --arg login_2fa_token "${TOKEN}" \
+    --arg code "${totpCode}" \
+    '{$login_2fa_token, $code}' \
+    | curl -sH "Content-Type: application/json" -X POST  -d @-  "${DOCKERHUB_API}/users/2fa-login" \
+    | jq -r 'select(.token != null) | .token')
+fi
+
 # Terminate here if token is not available
 if [ -z "${TOKEN}" ]; then
   >&2 printf "\n\tERR: unable to get access token.  Make sure your Docker Hub credentials are correct.\n"
@@ -76,7 +87,7 @@ CODE=$(jq -nc \
   '{"registry": "registry-1.docker.io", $full_description, $description} | del(.[] | nulls)' \
   | curl -sL  -X PATCH  -d @-  -o /tmp/out \
       -H "Content-Type: application/json" \
-      -H "Authorization: JWT ${TOKEN}" \
+      -H "Authorization: Bearer ${TOKEN}" \
       -w "%{http_code}" "${DOCKERHUB_API}/repositories/${SLUG}/")
 
 if [ "${CODE}" != "200" ]; then
