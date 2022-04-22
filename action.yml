@@ -26,7 +26,7 @@ inputs:
 
   description:
     description: |
-      Docker Hub repo's short description to set. If set to just `true`, Github's desription is used.
+      Docker Hub repo's short description to set. If set to just `true`, Github's description is used.
       If omitted, no action is performed.
     required: false
 
