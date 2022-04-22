@@ -65,13 +65,12 @@ steps:
 The best way to get your TOTP secret is to disable 2FA and then enable 2FA. The secret is text given in step 2, "Text Code".
 Alternatively, your software may display it (for example, with Bitwarden, edit your entry, the secret is at the end of authentication key).
 
-> **NOTE:** Add Docker Hub password to "Secrets" section in your repo's settings.
- 
-> **NOTE_1:** Docker Hub requires `user`, and `slug` to be lowercase.  Conversion [is done] automatically for you, so that Github's `meeDamian` becomes `meedamian` when passed to Docker.
+#### Notes
 
-> **NOTE_2:** `description` sets Docker Hub short description to its literal content in all cases, except when it's set to `true`, when Github repo description is used instead.  When skipped, no change is made to Docker Hub description.
-
-> **NOTE_3:** `master` branch may sometimes be broken, or change behavior.  It's highly recommended to always use [tags].
+1. Add your Docker Hub credentials to "Secrets" section in your repo's settings.
+2. Docker Hub requires `user`, and `slug` to be lowercase.  Conversion [is done] automatically for you, so that Github's `meeDamian` becomes `meedamian` when passed to Docker.
+3. `description` sets Docker Hub short description to its literal content in all cases, except when it's set to `true`, when Github repo description is used instead.  When skipped, no change is made to Docker Hub description.
+4.  `master` branch may sometimes be broken, or change behavior.  It's highly recommended to always use [tags].
 
 [is done]: https://github.com/meeDamian/sync-readme/blob/master/entrypoint.sh#L32-L35
 [tags]: https://github.com/meeDamian/sync-readme/tags
