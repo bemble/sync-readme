@@ -1,9 +1,9 @@
-name: Docker Hub README & description sync
-description: Sync README.md and description from Github to Docker Hub
+name: Synchronize Github description and README.md with Docker Hub
+description: Synchronize README.md and description from Github to Docker Hub
 author: "Pierre"
 inputs:
   user:
-    description: Docker Hub username.  Set only if different than on Github.
+    description: Docker Hub username. Set only if different than on Github.
     required: false
 
   pass:
@@ -11,22 +11,22 @@ inputs:
     required: true
 
   totp_secret:
-    description: Docker Hub 2FA totp secret
+    description: Docker Hub 2FA totp secret, if applicable.
     required: false
 
   slug:
     description: |
-      Docker Hub repository path in the form of: <namespace>/<name>.  Gets converted to lower case.
+      Docker Hub repository path in the form of: <namespace>/<name>. Gets converted to lower case.
       Only needed, if different than Github's.
     required: false
 
   readme:
-    description: Optional relative path to the README.md file.  If not provided, one at repo root used.
+    description: Optional relative path to the README.md file. If not provided, one at repo root used.
     required: false
 
   description:
     description: |
-      Docker Hub repo's short description to set.  If set to just `true`, Github's desription is used.
+      Docker Hub repo's short description to set. If set to just `true`, Github's desription is used.
       If omitted, no action is performed.
     required: false
 
