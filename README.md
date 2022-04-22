@@ -24,7 +24,7 @@ If your `user`-name, and the repo path (`slug`) are both the same on Github and 
 
 ```yaml
 steps:
-- uses: actions/checkout@master
+- uses: actions/checkout@v2
 
 - uses: bemble/sync-readme@v1.0.0
   with:
@@ -38,7 +38,7 @@ If everything needs to be specified:
 
 ```yaml
 steps:
-- uses: actions/checkout@master
+- uses: actions/checkout@v2
 
 - uses: bemble/sync-readme@v1.0.0
   with:
@@ -55,7 +55,7 @@ If your Docker Hub account uses software 2FA, you need to pass the TOTP secret:
 
 ```yaml
 steps:
-- uses: actions/checkout@master
+- uses: actions/checkout@v2
 
 - uses: bemble/sync-readme@v1.0.0
   with:
@@ -72,7 +72,7 @@ Alternatively, your software may display it (for example, with Bitwarden, edit y
 1. Add your Docker Hub credentials to "Secrets" section in your repo's settings.
 2. Docker Hub requires `user`, and `slug` to be lowercase. Conversion is done automatically for you, so that Github's `userName` becomes `username` when passed to Docker.
 3. `description` sets Docker Hub short description to its literal content in all cases, except when it's set to `true`, when Github repo description is used instead.  When skipped, no change is made to Docker Hub description.
-4.  `master` branch may sometimes be broken, or change behavior. It's highly recommended to always use [tags].
+4.  `main` branch may sometimes be broken, or change behavior. It's highly recommended to always use [tags].
 
 [tags]: https://github.com/bemble/sync-readme/tags
 
